@@ -13,7 +13,7 @@
     
     bookView.loadBooks = () => {
         Book.all.forEach(book => {
-            bookView.loadBook(book);
+            bookView.renderBook(book);
         });
     };
 
