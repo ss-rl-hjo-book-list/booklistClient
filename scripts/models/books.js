@@ -1,5 +1,5 @@
-// const API_URL = 'http://localhost:3000';
-const API_URL = 'https://ss-rl-hjo-book-list.herokuapp.com/';
+const API_URL = 'http://localhost:3000';
+// const API_URL = 'https://ss-rl-hjo-book-list.herokuapp.com/';
 
 (function (module) {
 
@@ -14,15 +14,20 @@ const API_URL = 'https://ss-rl-hjo-book-list.herokuapp.com/';
     };
 
     // Define "instance" data methods
-    // Book.prototype.insert = function(callback) {
-    //     $.post(`${API_URL}/books`, {
-    //         task: this.task
-    //     })
-    //         .then(data => {
-    //             Object.keys(data).forEach(key => this[key] = data[key]);
-    //             if(callback) callback();
-    //         });
-    // };
+    Book.prototype.insert = function(callback) {
+        $.post(`${API_URL}/api/v1/books`, {
+            title: this.title,
+            author: this.author,
+            isbn: this.isbn,
+            image_url: this.image_url,
+            description: this.description
+        })
+            .then(data => {
+                Object.keys(data).forEach(key => this[key] = data[key]);
+                Book.all.push();
+                if(callback) callback();
+            });
+    };
     
     Book.all = [];
     

@@ -5,25 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-</head>
-<body>
-    <section id="books">
-
-    </section>
-    <script id="book-template" type="text/html">
-        <section>
-            <p>{{id}}</p>
-            <p>{{title}}</p>
+    <script id="books-template" type="text/x-handlebars-template">
+        <section class="book">
             <p>{{author}}</p>
-            <p>{{image_url}}</p>
         </section>
     </script>
+</head>
+<body>
+    <section class="books">
+
+    </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="scripts/models/books.js"></script>
     <script src="scripts/views/bookView.js"></script>
     <script>
-        app.Book.fetchAll(app.bookView.initIndexPage());
+        app.Books.fetchAll(app.booksView.initIndexPage);
+
     </script>
 </body>
 </html>
