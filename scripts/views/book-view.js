@@ -17,7 +17,7 @@
     };
 
     bookView.renderBook = book => {
-        $('.books').append(book.toHtml());
+        $('#books').append(book.toHtml());
     };
 
     // What does your module export
