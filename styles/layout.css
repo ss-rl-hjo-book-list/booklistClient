@@ -1,0 +1,14 @@
+header {
+    height: 70px;
+    width: 100%;
+}
+header h2 {
+    margin-top: 0px;
+    padding-top: 20px;
+}
+ul {
+    margin-top: 0px;
+}
+footer {
+    height: 100px;
+}

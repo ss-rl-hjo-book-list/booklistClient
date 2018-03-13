@@ -1,0 +1,7 @@
+li {
+    list-style-type: none;
+}
+.book {
+    background-color: rgb(100, 100, 100);
+    margin: 40px 20px;
+}
