@@ -4,9 +4,16 @@
     // What do you need (import or require) from prior modules?
     const Book = module.Book;
 
+    function resetView() {
+        $('.view').hide();
+    }
+    
     const bookView = {};
     
     bookView.initIndexPage = () => {
+        resetView();
+        $('#books').show();
+        $('.books').empty();
         bookView.loadBooks();
     };
     
@@ -17,7 +24,7 @@
     };
 
     bookView.renderBook = book => {
-        $('#books').append(book.toHtml());
+        $('.books').append(book.toHtml());
     };
 
     // What does your module export
