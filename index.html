@@ -5,16 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script id="books-template" type="text/x-handlebars-template">
-        <section class="book">
-            <p>{{author}}</p>
-        </section>
-    </script>
 </head>
 <body>
-    <section class="books">
-
+    <h2>my books</h2>
+    <section class="books">   
     </section>
+    <script id="books-template" type="text/x-handlebars-template">
+        <section class="book">
+            <ul>
+                <li>
+                    <img src="{{image_url}}" alt="book img"/>
+                    <h2>{{title}}</h2>
+                    <p>{{author}}</p>
+                </li>
+            </ul>
+        </section>
+    </script>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="scripts/models/books.js"></script>
