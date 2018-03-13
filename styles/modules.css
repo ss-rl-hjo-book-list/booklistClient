@@ -5,10 +5,18 @@
 
 .book-info {
     background-color: rgb(74, 74, 74);
+    height: 100px;
 }
 
 .book img {
     display: block;
     margin: 0px auto;
     padding-top: 10px; 
+}
+
+.book-info h2, p {
+    margin: 0px;
+    padding-top: 10px;
+    padding-left: 20px;
+    line-height: 25px;
 }
