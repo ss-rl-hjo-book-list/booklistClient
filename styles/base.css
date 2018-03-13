@@ -1,10 +1,17 @@
 header {
     background-color: rgb(59, 59, 59);
-    color: rgb(117, 117, 117);
 }
+
 body {
     background-color: rgb(197, 197, 197);
 }
+
 footer {
-    background-color: rgb(117, 117, 117);
+    background-color: rgb(155, 155, 155);
+}
+
+h2, p {
+    color: rgb(155, 155, 155);
+    font-family: sans-serif;
+    font-weight: lighter;
 }
