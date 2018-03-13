@@ -1,5 +1,4 @@
-//const API_URL = 'http://localhost:3000/api/v1';
-const API_URL = 'https://ss-rl-hjo-book-list.herokuapp.com/api/v1';
+'use strict';
 
 (function (module) {
 
@@ -41,4 +40,4 @@ const API_URL = 'https://ss-rl-hjo-book-list.herokuapp.com/api/v1';
 
     module.Book = Book;
 
-})(window.app || (window.app = {}));
+})(window.module);
