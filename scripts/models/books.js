@@ -1,5 +1,5 @@
-const API_URL = 'http://localhost:3000/api/v1';
-// const API_URL = 'https://ss-rl-hjo-book-list.herokuapp.com/api/v1';
+//const API_URL = 'http://localhost:3000/api/v1';
+const API_URL = 'https://ss-rl-hjo-book-list.herokuapp.com/api/v1';
 
 (function (module) {
 
