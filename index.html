@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet" href="styles/theme.css">
     <title>Document</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
         <h2>books app</h2>
     </header>
     <main>
-        <h2>my books</h2>
+        <h2 id="section-header">my books</h2>
         <section class="books"></section>
     </main>
     <footer>
@@ -23,15 +24,11 @@
     </footer>
     <script id="books-template" type="text/x-handlebars-template">
         <section class="book">
-            <ul>
-                <li>
-                    <img src="{{image_url}}" alt="book img"/>
-                    <div class="book-info">
-                        <h2>{{title}}</h2>
-                        <p>{{author}}</p>
-                    </div>
-                </li>
-            </ul>
+            <img src="{{image_url}}" alt="book img"/>
+            <div class="book-info">
+                <h2>{{title}}</h2>
+                <p>{{author}}</p>
+            </div>
         </section>
     </script>
     

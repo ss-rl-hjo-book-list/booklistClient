@@ -1,7 +1,14 @@
-li {
-    list-style-type: none;
-}
 .book {
-    background-color: rgb(100, 100, 100);
+    background-color: rgb(155, 155, 155);
     margin: 40px 20px;
+}
+
+.book-info {
+    background-color: rgb(74, 74, 74);
+}
+
+.book img {
+    display: block;
+    margin: 0px auto;
+    padding-top: 10px; 
 }
