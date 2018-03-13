@@ -8,7 +8,6 @@
     
     bookView.initIndexPage = () => {
         bookView.loadBooks();
-        bookView.renderBook();
     };
     
     bookView.loadBooks = () => {
@@ -18,7 +17,7 @@
     };
 
     bookView.renderBook = book => {
-        $('#books').append(book.toHtml());
+        $('.books').append(book.toHtml());
     };
 
     // What does your module export
