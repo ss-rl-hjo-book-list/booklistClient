@@ -32,6 +32,25 @@
     bookView.initNew = () => {
         resetView();
         $('#add-book').show();
+
+        $('#add-book-form')
+            .off('submit')
+            .on('submit', event => {
+                event.preventDefault();
+
+                const data = {
+                    title: $('input[name=title]').val(),
+                    author: $('input[name=author]').val(),
+                    isbn: $('input[name=isbn]').val(),
+                    image_url: $('input[name=image_url]').val(),
+                    description: $('input[name=description]').val(),
+                };
+
+                Book.create(data, (book) => {
+                    $('#add-book-form')[0].reset();
+                    page(`/books/${book.id}`);
+                });
+            });
     };
     
     bookView.loadBooks = () => {
