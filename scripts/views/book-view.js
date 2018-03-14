@@ -5,7 +5,7 @@
     const Book = module.Book;
 
     const booksTemplate = Handlebars.compile($('#books-template').html());
-    // const detailTemplate = Handlebars.compile($('#book-detail-template'));
+    // const detailTemplate = Handlebars.compile($('#book-detail-template').html());
 
     // Book.prototype.booksToHtml = function() {
     //     const booksTemplate = Handlebars.compile($('#books-template').html());
@@ -42,14 +42,11 @@
     bookView.loadBooks = () => {
         Book.all.forEach(book => {
             const html = booksTemplate(book);
-            bookView.renderBook(html);
+            $('.books').append(html);
+            // bookView.renderBook(html);
         });
     };
-
-    bookView.renderBook = book => {
-        $('.books').append(book.toHtml());
-    };
-
+    
     // What does your module export
     module.bookView = bookView;
 
