@@ -43,6 +43,14 @@
             .catch(console.log);
     };
 
+    Book.create = function(data, callback) {
+        $.post(`${API_URL}/books`)
+            .then(data => {
+                if(callback) callback(data);
+            })
+            .catch(console.log);
+    };
+
     module.Book = Book;
 
 })(window.module);
