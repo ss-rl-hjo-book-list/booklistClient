@@ -3,6 +3,22 @@
 (function(module) {
     // What do you need (import or require) from prior modules?
     const Book = module.Book;
+    
+    // const template = Handlebars.compile($('#books-template').html());
+
+    // Book.prototype.booksToHtml = function() {
+    //     const booksTemplate = Handlebars.compile($('#books-template').html());
+    //     return booksTemplate(this);
+    // };
+
+    // Book.prototype.detailToHtml = function() {
+    //     const detailTemplate = Handlebars.compile($('#book-detail-template').html());
+    //     return detailTemplate(this);
+    // };
+
+    // Book.prototype.toHtml = function() {
+    //     return template(this);
+    // };
 
     function resetView() {
         $('.view').hide();
@@ -16,7 +32,18 @@
         $('.books').empty();
         bookView.loadBooks();
     };
+
+    bookView.initDetail = () => {
+        resetView();
+        $('#book-detail').show();
+    };
     
+    bookView.loadBooks = () => {
+        Book.all.forEach(book => {
+            bookView.renderBook(book);
+        });
+    };
+
     bookView.loadBooks = () => {
         Book.all.forEach(book => {
             bookView.renderBook(book);
@@ -26,6 +53,10 @@
     bookView.renderBook = book => {
         $('.books').append(book.toHtml());
     };
+
+    // bookView.renderBook = book => {
+    //     $('.books').append(book.toHtml());
+    // };
 
     // What does your module export
     module.bookView = bookView;

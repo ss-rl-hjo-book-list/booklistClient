@@ -1,16 +1,10 @@
 'use strict';
 
 (function (module) {
-
-    const template = Handlebars.compile($('#books-template').html());
     
     function Book(data) {
         Object.keys(data).forEach(key => this[key] = data[key]);
     }
-    
-    Book.prototype.toHtml = function() {
-        return template(this);
-    };
 
     // Define "instance" data methods
     Book.prototype.insert = function(callback) {

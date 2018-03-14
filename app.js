@@ -7,8 +7,9 @@
     page('/home', () => Book.fetchAll(bookView.initIndexPage));
     page('/books/:id', ctx => Book.fetchOne(ctx.params.id, bookView.initDetail));
 
-    page('*', () => page.redirect('/home'));
+    // page('*', () => page.redirect('/home'));
 
     page({ hashbang: true });
+
 })(window.module);
 
