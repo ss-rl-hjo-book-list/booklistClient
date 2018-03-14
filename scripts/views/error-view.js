@@ -8,7 +8,7 @@
     errorView.init = function(err) {
         const html = errorTemplate(err);
 
-        $('#error_view')
+        $('#error-view')
             .empty()
             .append(html)
             .show();

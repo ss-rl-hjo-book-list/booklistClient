@@ -4,6 +4,9 @@
     // What do you need (import or require) from prior modules?
     const Book = module.Book;
 
+    const errorView = module.errorView;
+    const handleError = err => errorView.init(err);
+
     const booksTemplate = Handlebars.compile($('#books-template').html());
     const detailTemplate = Handlebars.compile($('#book-detail-template').html());
     // Book.prototype.toHtml = function() {
@@ -51,7 +54,7 @@
                         $('#add-book-form')[0].reset();
                         page(`/books/${book.id}`);
                     })
-                    .catch(console.log('broken'));
+                    .catch(handleError);
             });
     };
     
