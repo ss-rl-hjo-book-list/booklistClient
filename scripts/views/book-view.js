@@ -28,6 +28,11 @@
         $('#book-detail').show();
         bookView.loadBookDetail();
     };
+
+    bookView.initNew = () => {
+        resetView();
+        $('#add-book').show();
+    };
     
     bookView.loadBooks = () => {
         Book.all.forEach(book => {
