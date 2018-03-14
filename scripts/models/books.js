@@ -34,17 +34,39 @@
 
     Book.detail = null;
 
-    Book.fetchOne = function(id, callback) {
-        $.getJSON(`${API_URL}/books/${id}`)
+    // Book.fetchOne = function(id, callback) {
+    //     $.getJSON(`${API_URL}/books/${id}`)
+    //         .then(data => {
+    //             Book.detail = new Book(data);
+    //             if(callback) callback();
+    //         })
+    //         .catch(console.log);
+    // };
+
+    Book.fetchOne = (id) => {
+        return $.getJSON(`${API_URL}/books/${id}`)
             .then(data => {
                 Book.detail = new Book(data);
-                if(callback) callback();
-            })
-            .catch(console.log);
+            });
     };
 
     Book.create = data => {
         return $.post(`${API_URL}/books`, data);
+    };
+    
+    Book.update = data => {
+        return $.ajax({
+            url: `${API_URL}/books/${data.id}`,
+            method: 'PUT',
+            data: data
+        });
+    };
+
+    Book.delete = id => {
+        return $.ajax({
+            url: `${API_URL}/books/${id}`,
+            method: 'DELETE'
+        });
     };
 
     module.Book = Book;

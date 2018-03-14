@@ -25,14 +25,19 @@
         $('.books').empty();
         bookView.loadBooks();
     };
-
+    
     bookView.initDetail = () => {
         resetView();
         $('.book-detail').empty();
         $('#book-detail').show();
         bookView.loadBookDetail();
     };
+    
+    bookView.initUpdate = () => {
+        resetView();
+        $('#add-book').show();
 
+    };
     bookView.initNew = () => {
         resetView();
         $('#add-book').show();
@@ -69,7 +74,18 @@
     bookView.loadBookDetail = () => {
         const html = detailTemplate(Book.detail);
         $('.book-detail').append(html);
+        $('#book-delete').on('click', () => {
+            Book.delete(Book.detail.id)
+                .then(() => {
+                    page('/home');
+                })
+                .catch(handleError);
+        });
+        $('#book-update').on('click', () => {
+            page(`/books/${Book.detail.id}/update`);
+        });
     };
+
 
     // bookView.renderBook = book => {
     //     $('.books').append(book.toHtml());

@@ -3,7 +3,7 @@
 (function(module) {
 
     $('.icon-menu').on('click', () => {
-        $('.icon-menu').toggleClass('open');
+        $('.icon-menu').toggleClass('   open');
         $('.nav-menu').slideToggle(350);
     });
 
@@ -21,7 +21,8 @@
     });
     page('/home', () => Book.fetchAll(bookView.initIndexPage));
     page('/books/new', () => bookView.initNew());
-    page('/books/:id', ctx => Book.fetchOne(ctx.params.id, bookView.initDetail));
+    page('/books/:id/update', ctx => Book.fetchOne(ctx.params.id).then(bookView.initUpdate));
+    page('/books/:id', ctx => Book.fetchOne(ctx.params.id).then(bookView.initDetail));
 
     // page('*', () => page.redirect('/home'));
 
