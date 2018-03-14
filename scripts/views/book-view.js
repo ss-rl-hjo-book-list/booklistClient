@@ -4,7 +4,7 @@
     // What do you need (import or require) from prior modules?
     const Book = module.Book;
     const booksTemplate = Handlebars.compile($('#books-template').html());
-    //const detailTemplate = Handlebars.compile($('#book-detail-template'));
+    const detailTemplate = Handlebars.compile($('#book-detail-template').html());
    
     // Book.prototype.toHtml = function() {
     //     return template(this);
@@ -26,14 +26,19 @@
     bookView.initDetail = () => {
         resetView();
         $('#book-detail').show();
+        bookView.loadBookDetail();
     };
     
     bookView.loadBooks = () => {
         Book.all.forEach(book => {
             const html = booksTemplate(book);
             $('.books').append(html);
-            // bookView.renderBook(html);
         });
+    };
+
+    bookView.loadBookDetail = () => {
+        const html = detailTemplate(Book.detail);
+        $('#book-detail').append(html);
     };
 
     // bookView.renderBook = book => {
