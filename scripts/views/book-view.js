@@ -3,9 +3,8 @@
 (function(module) {
     // What do you need (import or require) from prior modules?
     const Book = module.Book;
-    
-    // const template = Handlebars.compile($('#books-template').html());
-
+    const booksTemplate = Handlebars.compile($('#books-template').html());
+    const detailTemplate = Handlebars.compile($('#book-detail-template'));
     // Book.prototype.booksToHtml = function() {
     //     const booksTemplate = Handlebars.compile($('#books-template').html());
     //     return booksTemplate(this);
@@ -40,23 +39,14 @@
     
     bookView.loadBooks = () => {
         Book.all.forEach(book => {
-            bookView.renderBook(book);
-        });
-    };
-
-    bookView.loadBooks = () => {
-        Book.all.forEach(book => {
-            bookView.renderBook(book);
+            const html = booksTemplate(book);
+            bookView.renderBook(html);
         });
     };
 
     bookView.renderBook = book => {
         $('.books').append(book.toHtml());
     };
-
-    // bookView.renderBook = book => {
-    //     $('.books').append(book.toHtml());
-    // };
 
     // What does your module export
     module.bookView = bookView;
