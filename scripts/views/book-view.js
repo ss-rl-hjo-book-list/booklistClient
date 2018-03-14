@@ -28,6 +28,7 @@
 
     bookView.initDetail = () => {
         resetView();
+        $('.book-detail').empty();
         $('#book-detail').show();
         bookView.loadBookDetail();
     };
@@ -67,7 +68,7 @@
 
     bookView.loadBookDetail = () => {
         const html = detailTemplate(Book.detail);
-        $('#book-detail').append(html);
+        $('.book-detail').append(html);
     };
 
     // bookView.renderBook = book => {

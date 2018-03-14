@@ -43,6 +43,7 @@
         </section>
         <section id="book-detail" class="view">
             <h2>Book Detail</h2>
+            <div class="book-detail"></div>
         </section>
         <section id="error-view" class="view"></section>
     </main>
@@ -51,7 +52,7 @@
     </footer>
     <script id="books-template" type="text/x-handlebars-template">
         <section class="book">
-            <img src="{{image_url}}" alt="book img"/>
+            <a href="/books/{{id}}"><img src="{{image_url}}" alt="book img"/></a>
             <div class="book-info">
                 <h2>{{title}}</h2>
                 <p>{{author}}</p>
@@ -64,6 +65,10 @@
             <div class="book-info">
                 <h2>{{title}}</h2>
                 <p>{{author}}</p>
+            </div>
+            <div id="book-actions">
+                <button id="book-delete">Delete</button>
+                <button id="book-update">Update</button>
             </div>
         </section>
     </script>  
