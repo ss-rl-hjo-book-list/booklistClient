@@ -46,10 +46,12 @@
                     description: $('input[name=description]').val(),
                 };
 
-                Book.create(data, (book) => {
-                    $('#add-book-form')[0].reset();
-                    page(`/books/${book.id}`);
-                });
+                Book.create(data)
+                    .then(book => {
+                        $('#add-book-form')[0].reset();
+                        page(`/books/${book.id}`);
+                    })
+                    .catch(console.log('broken'));
             });
     };
     
