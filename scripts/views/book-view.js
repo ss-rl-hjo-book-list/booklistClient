@@ -3,8 +3,10 @@
 (function(module) {
     // What do you need (import or require) from prior modules?
     const Book = module.Book;
+
     const booksTemplate = Handlebars.compile($('#books-template').html());
-    const detailTemplate = Handlebars.compile($('#book-detail-template'));
+    // const detailTemplate = Handlebars.compile($('#book-detail-template'));
+
     // Book.prototype.booksToHtml = function() {
     //     const booksTemplate = Handlebars.compile($('#books-template').html());
     //     return booksTemplate(this);
