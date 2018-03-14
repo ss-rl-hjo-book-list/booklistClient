@@ -17,6 +17,7 @@
         <nav class="nav-menu">
             <ul>
                 <li><a href="/home">home</a></li>
+                <li><a href="/books/new">Add Book</a></li>
             </ul>
         </nav>
     </header>
@@ -26,7 +27,19 @@
             <h2 id="section-header">my books</h2>
             <div class="books"></div>
         </section>
-        <section id="add-book" class="view"></section>
+        <section id="add-book" class="view">
+            <h2>Add Book</h2>
+            <form id="add-book-form">
+                <fieldset>
+                    <input type="text" name="title" placeholder="title">
+                    <input type="text" name="author" placeholder="author">
+                    <input type="text" name="isbn" placeholder="isbn">
+                    <input type="text" name="image_url" placeholder="image_url">
+                    <input type="text" name="description" placeholder="description">
+                    <input type="submit">
+                </fieldset>
+            </form>
+        </section>
         <section id="book-detail" class="view">
             <h2>Book Detail</h2>
         </section>
@@ -36,6 +49,15 @@
     </footer>
     <script id="books-template" type="text/x-handlebars-template">
         <section class="book">
+            <img src="{{image_url}}" alt="book img"/>
+            <div class="book-info">
+                <h2>{{title}}</h2>
+                <p>{{author}}</p>
+            </div>
+        </section>
+    </script>
+    <script id="book-detail-template" type="text/x-handlebars-template">
+        <section class="book-detail">
             <img src="{{image_url}}" alt="book img"/>
             <div class="book-info">
                 <h2>{{title}}</h2>

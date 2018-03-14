@@ -5,18 +5,7 @@
     const Book = module.Book;
 
     const booksTemplate = Handlebars.compile($('#books-template').html());
-    // const detailTemplate = Handlebars.compile($('#book-detail-template').html());
-
-    // Book.prototype.booksToHtml = function() {
-    //     const booksTemplate = Handlebars.compile($('#books-template').html());
-    //     return booksTemplate(this);
-    // };
-
-    // Book.prototype.detailToHtml = function() {
-    //     const detailTemplate = Handlebars.compile($('#book-detail-template').html());
-    //     return detailTemplate(this);
-    // };
-
+    const detailTemplate = Handlebars.compile($('#book-detail-template').html());
     // Book.prototype.toHtml = function() {
     //     return template(this);
     // };
@@ -37,16 +26,51 @@
     bookView.initDetail = () => {
         resetView();
         $('#book-detail').show();
+        bookView.loadBookDetail();
+    };
+
+    bookView.initNew = () => {
+        resetView();
+        $('#add-book').show();
+
+        $('#add-book-form')
+            .off('submit')
+            .on('submit', event => {
+                event.preventDefault();
+
+                const data = {
+                    title: $('input[name=title]').val(),
+                    author: $('input[name=author]').val(),
+                    isbn: $('input[name=isbn]').val(),
+                    image_url: $('input[name=image_url]').val(),
+                    description: $('input[name=description]').val(),
+                };
+
+                Book.create(data)
+                    .then(book => {
+                        $('#add-book-form')[0].reset();
+                        page(`/books/${book.id}`);
+                    })
+                    .catch(console.log('broken'));
+            });
     };
     
     bookView.loadBooks = () => {
         Book.all.forEach(book => {
             const html = booksTemplate(book);
             $('.books').append(html);
-            // bookView.renderBook(html);
         });
     };
-    
+
+    bookView.loadBookDetail = () => {
+        const html = detailTemplate(Book.detail);
+        $('#book-detail').append(html);
+    };
+
+    // bookView.renderBook = book => {
+    //     $('.books').append(book.toHtml());
+    // };
+
     // What does your module export
     module.bookView = bookView;
 

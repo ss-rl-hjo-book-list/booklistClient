@@ -43,6 +43,10 @@
             .catch(console.log);
     };
 
+    Book.create = data => {
+        return $.post(`${API_URL}/books`, data);
+    };
+
     module.Book = Book;
 
 })(window.module);

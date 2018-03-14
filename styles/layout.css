@@ -12,3 +12,12 @@ header h2 {
 footer {
     height: 100px;
 }
+
+li {
+    display: inline;
+}
+
+input {
+    display: block;
+    margin: 10px;
+}
