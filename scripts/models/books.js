@@ -1,17 +1,10 @@
-//const API_URL = 'http://localhost:3000/api/v1';
-const API_URL = 'https://ss-rl-hjo-book-list.herokuapp.com/api/v1';
+'use strict';
 
 (function (module) {
-
-    const template = Handlebars.compile($('#books-template').html());
     
     function Book(data) {
         Object.keys(data).forEach(key => this[key] = data[key]);
     }
-    
-    Book.prototype.toHtml = function() {
-        return template(this);
-    };
 
     // Define "instance" data methods
     Book.prototype.insert = function(callback) {
@@ -39,6 +32,21 @@ const API_URL = 'https://ss-rl-hjo-book-list.herokuapp.com/api/v1';
             .catch(console.log);
     };
 
+    Book.detail = null;
+
+    Book.fetchOne = function(id, callback) {
+        $.getJSON(`${API_URL}/books/${id}`)
+            .then(data => {
+                Book.detail = new Book(data);
+                if(callback) callback();
+            })
+            .catch(console.log);
+    };
+
+    Book.create = data => {
+        return $.post(`${API_URL}/books`, data);
+    };
+
     module.Book = Book;
 
-})(window.app || (window.app = {}));
+})(window.module);

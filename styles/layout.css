@@ -12,3 +12,31 @@ header h2 {
 footer {
     height: 100px;
 }
+
+li {
+    display: inline;
+}
+
+input {
+    display: block;
+    margin: 10px;
+}
+
+.icon-menu {
+    cursor: pointer;
+    color: #ff7445;
+    font-size: 1.75em;
+    transition: 
+        transform 250ms ease-in-out,
+        color 250ms ease-in-out;
+    height: 20px;
+    width: 20px;
+    background-color: blue;
+}
+
+
+
+.icon-menu.open {
+color: #efeb3d;
+transform: rotateZ(90deg);
+}
