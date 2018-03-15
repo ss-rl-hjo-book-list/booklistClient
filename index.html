@@ -14,31 +14,81 @@
 <body>
     <header>
         <h2>books app</h2>
+        <div class="icon-menu"></div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="/home">home</a></li>
+                <li><a href="/books/new">Add Book</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
-        <h2 id="section-header">my books</h2>
-        <section class="books"></section>
+        
+        <section id="books" class="view">
+            <h2 id="section-header">my books</h2>
+            <div class="books"></div>
+        </section>
+        <section id="add-book" class="view">
+            <h2 class="update-title">Add Book</h2>
+            <form id="add-book-form">
+                <fieldset>
+                    <input type="text" name="title" placeholder="title">
+                    <input type="text" name="author" placeholder="author">
+                    <input type="text" name="isbn" placeholder="isbn">
+                    <input type="text" name="image_url" placeholder="image_url">
+                    <input type="text" name="description" placeholder="description">
+                    <input type="submit">
+                </fieldset>
+            </form>
+        </section>
+        <section id="book-detail" class="view">
+            <h2>Book Detail</h2>
+            <div class="book-detail"></div>
+        </section>
+        <section id="error-view" class="view"></section>
     </main>
     <footer>
 
     </footer>
     <script id="books-template" type="text/x-handlebars-template">
         <section class="book">
-            <img src="{{image_url}}" alt="book img"/>
+            <a href="/books/{{id}}"><img src="{{image_url}}" alt="book img"/></a>
             <div class="book-info">
                 <h2>{{title}}</h2>
                 <p>{{author}}</p>
             </div>
         </section>
     </script>
-    
+    <script id="book-detail-template" type="text/x-handlebars-template">
+        <section class="book-detail">
+            <img src="{{image_url}}" alt="book img"/>
+            <div class="book-info">
+                <h2>{{title}}</h2>
+                <p>{{author}}</p>
+            </div>
+            <div id="book-actions">
+                <button id="book-delete">Delete</button>
+                <button id="book-update">Update</button>
+            </div>
+        </section>
+    </script>  
+    <script id="error-template" type="text/x-handlebars-template">
+        <h3>Something went wrong!</h3>
+        <p>{{status}}: {{statusText}}</p>
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-    <script src="scripts/models/books.js"></script>
-    <script src="scripts/views/bookView.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
     <script>
-        app.Book.fetchAll(app.bookView.initIndexPage);
+        const API_URL = window.location.protocol === 'https:'
+            ? 'https://ss-rl-hjo-book-list.herokuapp.com/api/v1'
+            : 'http://localhost:3000/api/v1';
 
+        window.module = {};
     </script>
+    <script src="scripts/models/books.js"></script>
+    <script src="scripts/views/error-view.js"></script>
+    <script src="scripts/views/book-view.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
