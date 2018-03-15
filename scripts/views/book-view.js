@@ -38,6 +38,7 @@
         $('#add-book').show();
 
         const book = Book.detail;
+        const id = book.id;
 
         $('h2.update-title').text('Update Book');
 
@@ -46,6 +47,27 @@
         $('input[name=isbn]').val(book.isbn);
         $('input[name=image_url]').val(book.image_url);
         $('input[name=description]').val(book.description);
+
+        $('#add-book-form')
+            .off('submit')
+            .on('submit', event => {
+                event.preventDefault();
+                const data = {
+                    id: id,
+                    title: $('input[name=title]').val(),
+                    author: $('input[name=author]').val(),
+                    isbn: $('input[name=isbn]').val(),
+                    image_url: $('input[name=image_url]').val(),
+                    description: $('input[name=description]').val()
+                };
+                
+                Book.update(data)
+                    .then(book => {
+                        $('#add-book-form')[0].reset();
+                        page(`/books/${book.id}`);
+                    })
+                    .catch(handleError);
+            });
 
     };
 
