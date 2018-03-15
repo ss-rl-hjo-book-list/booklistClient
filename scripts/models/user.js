@@ -20,7 +20,6 @@
                         headers: { token: passphrase }
                     });
                 }
-
                 return user;
             });
     };
