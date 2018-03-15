@@ -2,6 +2,7 @@
 
 (function(module) {
     const Book = module.Book;
+    const User = module.User;
 
     const errorView = module.errorView;
     const handleError = err => errorView.init(err);
@@ -21,6 +22,22 @@
         $('.book-detail').empty();
         $('#book-detail').show();
         bookView.loadBookDetail();
+
+        if(User.current && User.current.isAdmin) {
+            $('#book-delete').on('click', () => {
+                Book.delete(Book.detail.id)
+                    .then (() => {
+                        page('/');
+                    })
+                    .catch(handleError);
+            });
+            $('#book-update').on('click', () => {
+                page(`/books/${Book.detail.id}/update`);
+            });
+        }
+        else {
+            $('#book-actions').hide();
+        }
     };
     
     bookView.initUpdate = () => {

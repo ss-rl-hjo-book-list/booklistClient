@@ -16,8 +16,7 @@
     const Book = module.Book;
     const bookView = module.bookView;
     const loginView = module.loginView;
-    console.log(loginView);
-    console.log(bookView);
+
     page('*', (ctx, next) => {
         resetView();
         next();
