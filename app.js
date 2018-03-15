@@ -15,13 +15,16 @@
 
     const Book = module.Book;
     const bookView = module.bookView;
-
+    const loginView = module.loginView;
+    console.log(loginView);
+    console.log(bookView);
     page('*', (ctx, next) => {
         resetView();
         next();
     });
     page('/', () => Book.fetchAll().then(bookView.initIndexPage));
-    page('/books/new', () => bookView.initNew());
+    page('/login', loginView.init);
+    page('/books/new', bookView.initNew);
     page('/books/:id/update', ctx => Book.fetchOne(ctx.params.id).then(bookView.initUpdate));
     page('/books/:id', ctx => Book.fetchOne(ctx.params.id).then(bookView.initDetail));
 
