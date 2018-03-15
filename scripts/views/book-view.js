@@ -40,6 +40,13 @@
         const book = Book.detail;
 
         $('h2.update-title').text('Update Book');
+
+        $('input[name=title]').val(book.title);
+        $('input[name=author]').val(book.author);
+        $('input[name=isbn]').val(book.isbn);
+        $('input[name=image_url]').val(book.image_url);
+        $('input[name=description]').val(book.description);
+
     };
 
     bookView.initNew = () => {
@@ -57,7 +64,7 @@
                     author: $('input[name=author]').val(),
                     isbn: $('input[name=isbn]').val(),
                     image_url: $('input[name=image_url]').val(),
-                    description: $('input[name=description]').val(),
+                    description: $('input[name=description]').val()
                 };
 
                 Book.create(data)
