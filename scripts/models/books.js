@@ -22,13 +22,11 @@
     
     Book.all = [];
     
-    Book.fetchAll = function(callback) {
-        $.getJSON(`${API_URL}/books`)
+    Book.fetchAll = () => {
+        return $.getJSON(`${API_URL}/books`)
             .then(data => {
                 Book.all = data.map(each => new Book(each));
-                if(callback) callback();
-            })
-            .catch(console.log);
+            });
     };
 
     Book.detail = null;

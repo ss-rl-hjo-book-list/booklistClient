@@ -20,7 +20,7 @@
         resetView();
         next();
     });
-    page('/', () => Book.fetchAll(bookView.initIndexPage));
+    page('/', () => Book.fetchAll().then(bookView.initIndexPage));
     page('/books/new', () => bookView.initNew());
     page('/books/:id/update', ctx => Book.fetchOne(ctx.params.id).then(bookView.initUpdate));
     page('/books/:id', ctx => Book.fetchOne(ctx.params.id).then(bookView.initDetail));
