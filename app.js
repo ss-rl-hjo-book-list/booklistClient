@@ -3,11 +3,11 @@
 (function(module) {
 
     $('.icon-menu').on('click', () => {
-        $('.icon-menu').toggleClass('open');
+        $('.icon-menu').toggleClass('   open');
         $('.nav-menu').slideToggle(350);
     });
 
-    const menu = () => {
+    const resetView = () => {
         $('.view').hide();
         $('.icon-menu').removeClass('open');
         $('.nav-menu').slideUp(350);
@@ -15,15 +15,19 @@
 
     const Book = module.Book;
     const bookView = module.bookView;
+    const loginView = module.loginView;
+
     page('*', (ctx, next) => {
-        menu();
+        resetView();
         next();
     });
-    page('/home', () => Book.fetchAll(bookView.initIndexPage));
-    page('/books/new', () => bookView.initNew());
-    page('/books/:id', ctx => Book.fetchOne(ctx.params.id, bookView.initDetail));
+    page('/', () => Book.fetchAll().then(bookView.initIndexPage));
+    page('/login', loginView.init);
+    page('/books/new', bookView.initNew);
+    page('/books/:id/update', ctx => Book.fetchOne(ctx.params.id).then(bookView.initUpdate));
+    page('/books/:id', ctx => Book.fetchOne(ctx.params.id).then(bookView.initDetail));
 
-    // page('*', () => page.redirect('/home'));
+    page('*', () => page.redirect('/'));
 
     page({ hashbang: true });
 

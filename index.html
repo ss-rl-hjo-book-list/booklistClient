@@ -17,8 +17,9 @@
         <div class="icon-menu"></div>
         <nav class="nav-menu">
             <ul>
-                <li><a href="/home">home</a></li>
+                <li><a href="/">home</a></li>
                 <li><a href="/books/new">Add Book</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -29,7 +30,7 @@
             <div class="books"></div>
         </section>
         <section id="add-book" class="view">
-            <h2>Add Book</h2>
+            <h2 class="update-title">Add Book</h2>
             <form id="add-book-form">
                 <fieldset>
                     <input type="text" name="title" placeholder="title">
@@ -43,15 +44,24 @@
         </section>
         <section id="book-detail" class="view">
             <h2>Book Detail</h2>
+            <div class="book-detail"></div>
         </section>
         <section id="error-view" class="view"></section>
+        <section id="admin-view" class="view">
+            <h2>Sign In</h2>
+            <form id="admin-form">
+                <input id="passphrase" name="passphrase" placeholder="passphrase">
+                <button type="submit">Submit</button>
+            </form>
+            <p id="logged-in">You are logged in!</p>
+        </section>
     </main>
     <footer>
 
     </footer>
     <script id="books-template" type="text/x-handlebars-template">
         <section class="book">
-            <img src="{{image_url}}" alt="book img"/>
+            <a href="/books/{{id}}"><img src="{{image_url}}" alt="book img"/></a>
             <div class="book-info">
                 <h2>{{title}}</h2>
                 <p>{{author}}</p>
@@ -64,6 +74,10 @@
             <div class="book-info">
                 <h2>{{title}}</h2>
                 <p>{{author}}</p>
+            </div>
+            <div id="book-actions">
+                <button id="book-delete">Delete</button>
+                <button id="book-update">Update</button>
             </div>
         </section>
     </script>  
@@ -82,8 +96,10 @@
         window.module = {};
     </script>
     <script src="scripts/models/books.js"></script>
+    <script src="scripts/models/user.js"></script>
     <script src="scripts/views/error-view.js"></script>
     <script src="scripts/views/book-view.js"></script>
+    <script src="scripts/views/login-view.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
