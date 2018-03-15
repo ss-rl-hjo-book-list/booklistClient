@@ -37,9 +37,14 @@
         resetView();
         $('#add-book').show();
 
+        const book = Book.detail;
+
+        $('h2.update-title').text('Update Book');
     };
+
     bookView.initNew = () => {
         resetView();
+        $('h2.update-title').text('Add Book');
         $('#add-book').show();
 
         $('#add-book-form')

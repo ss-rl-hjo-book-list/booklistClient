@@ -34,15 +34,6 @@
 
     Book.detail = null;
 
-    // Book.fetchOne = function(id, callback) {
-    //     $.getJSON(`${API_URL}/books/${id}`)
-    //         .then(data => {
-    //             Book.detail = new Book(data);
-    //             if(callback) callback();
-    //         })
-    //         .catch(console.log);
-    // };
-
     Book.fetchOne = (id) => {
         return $.getJSON(`${API_URL}/books/${id}`)
             .then(data => {
