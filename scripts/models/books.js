@@ -6,7 +6,6 @@
         Object.keys(data).forEach(key => this[key] = data[key]);
     }
 
-    // Define "instance" data methods
     Book.prototype.insert = function(callback) {
         $.post(`${API_URL}/books`, {
             title: this.title,
