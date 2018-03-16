@@ -41,6 +41,15 @@
     Book.create = data => {
         return $.post(`${API_URL}/books`, data);
     };
+
+    Book.find = search => {
+        Book.search = search;
+        return $.getJSON(`${API_URL}/books?search=${encodeURIComponent(search)}`)
+            .then(result => {
+                Book.found = result.books;
+                Book.total = result.total;
+            });
+    };
     
     Book.update = data => {
         return $.ajax({

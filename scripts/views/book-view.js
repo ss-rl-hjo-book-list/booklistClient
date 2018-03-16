@@ -102,6 +102,10 @@
                     .catch(handleError);
             });
     };
+
+    bookView.initSearch = () => {
+        
+    }
     
     bookView.loadBooks = () => {
         Book.all.forEach(book => {

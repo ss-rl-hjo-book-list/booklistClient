@@ -26,6 +26,10 @@
     page('/books/new', bookView.initNew);
     page('/books/:id/update', ctx => Book.fetchOne(ctx.params.id).then(bookView.initUpdate));
     page('/books/:id', ctx => Book.fetchOne(ctx.params.id).then(bookView.initDetail));
+    page('/search-books', ctx => {
+        const search = Qs.parse(ctx.querystring).search;
+        Book.find(search).then(bookView.initSearch);
+    });
 
     page('*', () => page.redirect('/'));
 
