@@ -102,10 +102,30 @@
                     .catch(handleError);
             });
     };
+    // <section id="search-view" class="view">
+    //         <h2>Search for a book!</h2>
+    //         <form id="book-search">
+    //             <input required name="search">
+    //             <button>Search</button>
+    //         </form>
+    //         <ul id="book-api"></ul>
+    //     </section>
 
     bookView.initSearch = () => {
-        
-    }
+        $('#search-view').show();
+        console.log('initsearch is being called');
+        $('#book-api')
+            .empty()
+            .off('click')
+            .append(Book.found.map(booksTemplate))
+            .on('click', 'button', handleAdd);
+    };
+    const handleAdd = function() {
+        console.log('works??!?!?!');
+        const id = $(this).data('id');
+        Book.addBook(id)
+            .then(book => page(`books/${book.id}`));
+    };
     
     bookView.loadBooks = () => {
         Book.all.forEach(book => {

@@ -20,12 +20,11 @@
                 <li><a href="/">home</a></li>
                 <li><a href="/books/new">Add Book</a></li>
                 <li><a href="/login">Login</a></li>
-                <li><a href="/search-books">Search Books</a></li>
+                <li><a href="/books/find">Search Books</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        
         <section id="books" class="view">
             <h2 id="section-header">my books</h2>
             <div class="books"></div>
@@ -55,6 +54,14 @@
                 <button type="submit">Submit</button>
             </form>
             <p id="logged-in">You are logged in!</p>
+        </section>
+        <section id="search-view" class="view">
+            <h2>Search for a book!</h2>
+            <form id="book-search">
+                <input required name="search">
+                <button>Search</button>
+            </form>
+            <ul id="book-api"></ul>
         </section>
     </main>
     <footer>

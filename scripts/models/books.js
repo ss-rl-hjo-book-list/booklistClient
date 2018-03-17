@@ -42,9 +42,14 @@
         return $.post(`${API_URL}/books`, data);
     };
 
+    Book.found = null;
+    Book.total = 0;
+    Book.search = '';
+
     Book.find = search => {
         Book.search = search;
-        return $.getJSON(`${API_URL}/books?search=${encodeURIComponent(search)}`)
+        // return $.getJSON(`${API_URL}/books/find?search=${encodeURIComponent(search)}`)
+        return $.getJSON(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(search)}`)
             .then(result => {
                 Book.found = result.books;
                 Book.total = result.total;
