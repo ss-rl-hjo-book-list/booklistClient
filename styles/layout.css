@@ -5,8 +5,9 @@ header {
 }
 
 header h2 {
-    margin-top: 0px;
+    margin: 0px;
     padding-top: 20px;
+    width: fit-content;
 }
 
 footer {
@@ -31,12 +32,14 @@ input {
         color 250ms ease-in-out;
     height: 20px;
     width: 20px;
-    background-color: blue;
+    background-color: rgb(216, 216, 216);
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    border-radius: 2px;
 }
 
-
-
 .icon-menu.open {
-color: #efeb3d;
+/* color: #efeb3d; */
 transform: rotateZ(90deg);
 }
