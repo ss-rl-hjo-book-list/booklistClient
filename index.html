@@ -20,11 +20,11 @@
                 <li><a href="/">home</a></li>
                 <li><a href="/books/new">Add Book</a></li>
                 <li><a href="/login">Login</a></li>
+                <li><a href="/books/find">Search Books</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        
         <section id="books" class="view">
             <h2 id="section-header">my books</h2>
             <div class="books"></div>
@@ -55,6 +55,16 @@
             </form>
             <p id="logged-in">You are logged in!</p>
         </section>
+        <section id="search-view" class="view">
+            <h2>Search for a book!</h2>
+            <form id="book-search">
+                <input name="title" placeholder="title">
+                <input name="author" placeholder="author">
+                <input name="isbn" placeholder="isbn">
+                <button>Search</button>
+            </form>
+            <ul id="book-api"></ul>
+        </section>
     </main>
     <footer>
 
@@ -65,6 +75,7 @@
             <div class="book-info">
                 <h2>{{title}}</h2>
                 <p>{{author}}</p>
+                <button class="add-book">Add Book</button>
             </div>
         </section>
     </script>
@@ -88,6 +99,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.5.1/qs.min.js"></script>
     <script>
         const API_URL = window.location.protocol === 'https:'
             ? 'https://ss-rl-hjo-book-list.herokuapp.com/api/v1'

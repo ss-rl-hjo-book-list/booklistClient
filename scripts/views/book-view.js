@@ -16,6 +16,7 @@
         $('#books').show();
         $('.books').empty();
         bookView.loadBooks();
+        $('.add-book').hide();
     };
     
     bookView.initDetail = () => {
@@ -101,6 +102,63 @@
                     })
                     .catch(handleError);
             });
+    };
+    // <section id="search-view" class="view">
+    //         <h2>Search for a book!</h2>
+    //         <form id="book-search">
+    //             <input required name="search">
+    //             <button>Search</button>
+    //         </form>
+    //         <ul id="book-api"></ul>
+    //     </section>
+
+    bookView.initSearch = () => {
+        $('#search-view').show();
+        console.log('initsearch is being called');
+        $('#book-api')
+            .empty()
+            .off('click')
+            .append(Book.found.map(booksTemplate))
+            .on('click', 'button', handleAdd);
+
+        // $('#book-search input[name=nameValue]').val(Book.nameValue);
+        // $('#book-search input[name=title]').val(Book.title);
+
+        $('#book-search')
+            .off('submit')
+            .on('submit', handleSubmit);
+    };
+
+    const handleAdd = function() {
+        console.log('works??!?!?!');
+        const id = $(this).data('id');
+        console.log(id);
+        Book.import(id)
+            .then(book => page(`books/${book.id}`));
+    };
+
+    const handleSubmit = event => {
+        event.preventDefault();
+
+        const searchInput = [];
+
+        const titleInput = $('#book-search input[name=title]').val();
+        const authorInput = $('#book-search input[name=author]').val();
+        const isbnInput = $('#book-search input[name=isbn]').val();
+
+        console.log('TITLE INPUT!', titleInput);
+        console.log('AUTHOR INPUT!', authorInput);
+        console.log('ISBN INPUT!', isbnInput);
+                
+        if (titleInput) searchInput.push(`title:${titleInput}`);
+        if (authorInput) searchInput.push(`author:${authorInput}`);
+        if (isbnInput) searchInput.push(`isbn:${isbnInput}`);
+
+        // const form = event.target;
+        // const search  = form.elements.title.value;
+        const search  = searchInput;
+        console.log('SEARCH', search);
+        page(`/books/find?q=${encodeURIComponent(search)}`);
     };
     
     bookView.loadBooks = () => {
