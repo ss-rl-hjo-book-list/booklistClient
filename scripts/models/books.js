@@ -49,7 +49,7 @@
     Book.find = search => {
         Book.search = search;
         // TODO need to import books from google books api to our API, and need to call this put...
-        return $.getJSON(`${API_URL}/books/find?search=${encodeURIComponent(search)}`)
+        return $.getJSON(`${API_URL}/books/find?q=${encodeURIComponent(search)}`)
         // return $.getJSON(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(search)}`)
             .then(result => {
                 console.log(result);

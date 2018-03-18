@@ -25,7 +25,7 @@
     page('/login', loginView.init);
     page('/books/new', bookView.initNew);
     page('/books/find', ctx => {
-        const search = Qs.parse(ctx.querystring).search;
+        const search = Qs.parse(ctx.querystring).q;
         Book.find(search).then(bookView.initSearch);
     });
     page('/books/:id/update', ctx => Book.fetchOne(ctx.params.id).then(bookView.initUpdate));

@@ -119,12 +119,25 @@
             .off('click')
             .append(Book.found.map(booksTemplate))
             .on('click', 'button', handleAdd);
+        $('#book-search input[name=search]').val(Book.search);
+
+        $('#book-search')
+            .off('submit')
+            .on('submit', handleSubmit);
     };
+
     const handleAdd = function() {
         console.log('works??!?!?!');
         const id = $(this).data('id');
         Book.addBook(id)
             .then(book => page(`books/${book.id}`));
+    };
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        const form = event.target;
+        const search  = form.elements.search.value;
+        page(`/books/find?q=${encodeURIComponent(search)}`);
     };
     
     bookView.loadBooks = () => {
