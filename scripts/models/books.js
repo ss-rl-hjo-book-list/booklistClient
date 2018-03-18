@@ -22,13 +22,11 @@
     
     Book.all = [];
     
-    Book.fetchAll = function(callback) {
-        $.getJSON(`${API_URL}/books`)
+    Book.fetchAll = () => {
+        return $.getJSON(`${API_URL}/books`)
             .then(data => {
                 Book.all = data.map(each => new Book(each));
-                if(callback) callback();
-            })
-            .catch(console.log);
+            });
     };
 
     Book.detail = null;
@@ -42,6 +40,29 @@
 
     Book.create = data => {
         return $.post(`${API_URL}/books`, data);
+    };
+
+    Book.found = null;
+    Book.total = 0;
+    Book.search = '';
+
+    Book.find = search => {
+        Book.search = search;
+        // TODO need to import books from google books api to our API, and need to call this put...
+        return $.getJSON(`${API_URL}/books/find?q=${encodeURIComponent(search)}`)
+        // return $.getJSON(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(search)}`)
+            .then(result => {
+                console.log(result);
+                Book.found = result.books;
+                console.log(Book.found);
+            });
+    };
+
+    Book.import = (id) => {
+        return $.ajax({
+            url: `${API_URL}/books/google/${id}`,
+            method: 'PUT'
+        });
     };
     
     Book.update = data => {

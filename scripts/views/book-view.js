@@ -2,35 +2,46 @@
 
 (function(module) {
     const Book = module.Book;
+    const User = module.User;
 
     const errorView = module.errorView;
     const handleError = err => errorView.init(err);
 
     const booksTemplate = Handlebars.compile($('#books-template').html());
     const detailTemplate = Handlebars.compile($('#book-detail-template').html());
-
-    function resetView() {
-        $('.view').hide();
-    }
     
     const bookView = {};
     
     bookView.initIndexPage = () => {
-        resetView();
         $('#books').show();
         $('.books').empty();
         bookView.loadBooks();
+        $('.add-book').hide();
     };
     
     bookView.initDetail = () => {
-        resetView();
         $('.book-detail').empty();
         $('#book-detail').show();
         bookView.loadBookDetail();
+
+        if(User.current && User.current.isAdmin) {
+            $('#book-delete').on('click', () => {
+                Book.delete(Book.detail.id)
+                    .then (() => {
+                        page('/');
+                    })
+                    .catch(handleError);
+            });
+            $('#book-update').on('click', () => {
+                page(`/books/${Book.detail.id}/update`);
+            });
+        }
+        else {
+            $('#book-actions').hide();
+        }
     };
     
     bookView.initUpdate = () => {
-        resetView();
         $('#add-book').show();
 
         const book = Book.detail;
@@ -68,7 +79,6 @@
     };
 
     bookView.initNew = () => {
-        resetView();
         $('h2.update-title').text('Add Book');
         $('#add-book').show();
 
@@ -92,6 +102,63 @@
                     })
                     .catch(handleError);
             });
+    };
+    // <section id="search-view" class="view">
+    //         <h2>Search for a book!</h2>
+    //         <form id="book-search">
+    //             <input required name="search">
+    //             <button>Search</button>
+    //         </form>
+    //         <ul id="book-api"></ul>
+    //     </section>
+
+    bookView.initSearch = () => {
+        $('#search-view').show();
+        console.log('initsearch is being called');
+        $('#book-api')
+            .empty()
+            .off('click')
+            .append(Book.found.map(booksTemplate))
+            .on('click', 'button', handleAdd);
+
+        // $('#book-search input[name=nameValue]').val(Book.nameValue);
+        // $('#book-search input[name=title]').val(Book.title);
+
+        $('#book-search')
+            .off('submit')
+            .on('submit', handleSubmit);
+    };
+
+    const handleAdd = function() {
+        console.log('works??!?!?!');
+        const id = $(this).data('id');
+        console.log(id);
+        Book.import(id)
+            .then(book => page(`books/${book.id}`));
+    };
+
+    const handleSubmit = event => {
+        event.preventDefault();
+
+        const searchInput = [];
+
+        const titleInput = $('#book-search input[name=title]').val();
+        const authorInput = $('#book-search input[name=author]').val();
+        const isbnInput = $('#book-search input[name=isbn]').val();
+
+        console.log('TITLE INPUT!', titleInput);
+        console.log('AUTHOR INPUT!', authorInput);
+        console.log('ISBN INPUT!', isbnInput);
+                
+        if (titleInput) searchInput.push(`title:${titleInput}`);
+        if (authorInput) searchInput.push(`author:${authorInput}`);
+        if (isbnInput) searchInput.push(`isbn:${isbnInput}`);
+
+        // const form = event.target;
+        // const search  = form.elements.title.value;
+        const search  = searchInput;
+        console.log('SEARCH', search);
+        page(`/books/find?q=${encodeURIComponent(search)}`);
     };
     
     bookView.loadBooks = () => {
