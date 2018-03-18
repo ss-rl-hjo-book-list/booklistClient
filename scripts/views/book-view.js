@@ -16,6 +16,7 @@
         $('#books').show();
         $('.books').empty();
         bookView.loadBooks();
+        $('.add-book').hide();
     };
     
     bookView.initDetail = () => {
@@ -130,10 +131,10 @@
 
     const handleAdd = function() {
         console.log('works??!?!?!');
-        const isbn = $(this).data('isbn');
-        console.log(isbn);
-        Book.import(isbn)
-            .then(book => page(`books/${book.isbn}`));
+        const id = $(this).data('id');
+        console.log(id);
+        Book.import(id)
+            .then(book => page(`books/${book.id}`));
     };
 
     const handleSubmit = event => {

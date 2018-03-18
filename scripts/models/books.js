@@ -58,9 +58,9 @@
             });
     };
 
-    Book.import = (isbn) => {
+    Book.import = (id) => {
         return $.ajax({
-            url: `${API_URL}/books/google/${isbn}`,
+            url: `${API_URL}/books/google/${id}`,
             method: 'PUT'
         });
     };
