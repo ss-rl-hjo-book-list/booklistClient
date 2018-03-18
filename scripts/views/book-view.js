@@ -130,9 +130,10 @@
 
     const handleAdd = function() {
         console.log('works??!?!?!');
-        const id = $(this).data('id');
-        Book.addBook(id)
-            .then(book => page(`books/${book.id}`));
+        const isbn = $(this).data('isbn');
+        console.log(isbn);
+        Book.import(isbn)
+            .then(book => page(`books/${book.isbn}`));
     };
 
     const handleSubmit = event => {

@@ -57,6 +57,13 @@
                 console.log(Book.found);
             });
     };
+
+    Book.import = (isbn) => {
+        return $.ajax({
+            url: `${API_URL}/books/google/${isbn}`,
+            method: 'PUT'
+        });
+    };
     
     Book.update = data => {
         return $.ajax({
