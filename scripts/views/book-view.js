@@ -119,7 +119,20 @@
             .off('click')
             .append(Book.found.map(booksTemplate))
             .on('click', 'button', handleAdd);
-        $('#book-search input[name=search]').val(Book.search);
+
+        // const titleInput = $('#book-search input[name=title]').val();
+        // const authorInput = $('#book-search input[name=author]').val();
+        // const isbnInput = $('#book-search input[name=isbn]').val();
+        
+        // const search = null;
+        
+        // if (titleInput) search = titleInput;
+        // if (authorInput) search = authorInput;
+        // if (isbnInput) isbnInput;
+
+
+        // $('#book-search input[name=nameValue]').val(Book.nameValue);
+        $('#book-search input[name=title]').val(Book.title);
 
         $('#book-search')
             .off('submit')
@@ -135,8 +148,10 @@
 
     const handleSubmit = event => {
         event.preventDefault();
+
         const form = event.target;
-        const search  = form.elements.search.value;
+        const search  = form.elements.title.value;
+        console.log(search);
         page(`/books/find?q=${encodeURIComponent(search)}`);
     };
     
